@@ -49,7 +49,7 @@ bool loadAnnouncements(const std::string& path, ASGraph& graph) {
 
 		bool rov_invalid = (parts[2][0] == '1' || parts[2][0] == 't' || parts[2][0] == 'T');
 
-		graph.getOrCreate(asn) // Makes sure that AS exists
+		graph.getOrCreate(asn); // Makes sure that AS exists
 		Announcement ann;
 		ann.prefix = prefix;
 		ann.as_path = {asn};
@@ -107,7 +107,7 @@ bool loadROVAsns(const std::string& path, ASGraph& graph) {
 
 				try {
 					uint32_t asn = std::stoul(tok);
-					auto it = graph.ases.find.(asn);
+					auto it = graph.ases.find(asn);
 
 					if (it != graph.ases.end()) {
 						it -> second.setROV();
@@ -121,7 +121,7 @@ bool loadROVAsns(const std::string& path, ASGraph& graph) {
 }
 
 static void printUsage(const char* prog) {
-	std::cer << "Usage: " << prog << " <caida_file> <announcements.csv> Mrov_asns.csv> <output.csv>\n" << "\n" << " caida_file CAIDA AS relationship file\n" << " announcements.csv Columns: asn,prefix,rov_invalid\n" << "rov_asns.csv One ASN per line (or CSV)\n" << " output.csv Output RIB CSV (asn,prefix,as_path)\n"
+	std::cerr << "Usage: " << prog << " <caida_file> <announcements.csv> Mrov_asns.csv> <output.csv>\n" << "\n" << " caida_file CAIDA AS relationship file\n" << " announcements.csv Columns: asn,prefix,rov_invalid\n" << "rov_asns.csv One ASN per line (or CSV)\n" << " output.csv Output RIB CSV (asn,prefix,as_path)\n";
 }
 
 int main(int argc, char* argv[]) {
